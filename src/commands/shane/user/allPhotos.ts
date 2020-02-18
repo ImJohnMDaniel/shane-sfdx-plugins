@@ -26,8 +26,6 @@ export default class AllPhotos extends SfdxCommand {
 
     protected static requiresUsername = true;
 
-    protected static requiresProject = false;
-
     public async run(): Promise<any> {
         const conn = this.org.getConnection();
         let folderPath = this.flags.folder;
@@ -49,7 +47,7 @@ export default class AllPhotos extends SfdxCommand {
                 savePhotoForUserOrGroup({
                     conn,
                     userOrGroupId: user.Id,
-                    filePath: `${tempRepo}/img/${photos[index % photos.length]}`
+                    filePath: `${folderPath}/${photos[index % photos.length]}`
                 })
             )
         );
